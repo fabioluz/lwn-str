@@ -1,7 +1,6 @@
 'use client'
 
 import PrimaryLink from "@/components/primary-link";
-import Link from "next/link";
 
 export interface ResultItem {
   name: string;

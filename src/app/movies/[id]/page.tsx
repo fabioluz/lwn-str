@@ -1,9 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import * as Movies from '@/features/movies/service';
 import Link from 'next/link';
 import PrimaryLink from '@/components/primary-link';
+import * as Movies from '@/features/movies/service';
 
 export default function Person({ params }: {
   params: { id: number }

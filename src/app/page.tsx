@@ -3,8 +3,8 @@
 import Search from "./search";
 import { ResultItem, Results } from "./results";
 import { useState } from "react";
-import * as People from '../features/people/service';
-import * as Movies from '../features/movies/service';
+import * as People from '@/features/people/service';
+import * as Movies from '@/features/movies/service';
 
 export default function Home() {
   const [items, setItems] = useState<ResultItem[]>([]);

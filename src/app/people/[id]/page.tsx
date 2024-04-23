@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import * as People from '../../../features/people/service';
 import Link from 'next/link';
+import * as People from '@/features/people/service';
 
 export default function Person({ params }: {
   params: { id: number }
