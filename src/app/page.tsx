@@ -35,19 +35,17 @@ export default function Home() {
   }
 
   return (
-    <main className="flex h-screen flex-col items-center justify-between p-24 font-sans">
-      <div className="flex">
-        <div className="w-[410px] mr-6">
-          <Search
-            searching={searching}
-            onSearchPeople={searchPeople}
-            onSearchMovies={searchMovies}>
-          </Search>
-        </div>
-        <div className="w-[582px]">
-          <Results items={items} searching={searching}></Results>
-        </div>
+    <div className="flex">
+      <div className="w-[410px] mr-6">
+        <Search
+          searching={searching}
+          onSearchPeople={searchPeople}
+          onSearchMovies={searchMovies}>
+        </Search>
       </div>
-    </main>
+      <div className="w-[582px]">
+        <Results items={items} searching={searching}></Results>
+      </div>
+    </div>
   );
 }

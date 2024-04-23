@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 
 export interface SearchProps {
   searching: boolean;
@@ -9,10 +9,11 @@ export interface SearchProps {
 }
 
 export default function Search({ searching, onSearchPeople, onSearchMovies }: SearchProps) {
+  const searchRef = useRef<HTMLInputElement>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchOption, setSearchOption] = useState('people');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTermChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   }
 
@@ -31,9 +32,10 @@ export default function Search({ searching, onSearchPeople, onSearchMovies }: Se
     }
   }
 
-  const handleSearchOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm('');
     setSearchOption(event.target.value);
+    searchRef.current?.focus();
   };
 
   return (
@@ -52,7 +54,7 @@ export default function Search({ searching, onSearchPeople, onSearchMovies }: Se
               className="mr-2"
               value="people"
               checked={searchOption === 'people'}
-              onChange={handleSearchOptionChange}/>
+              onChange={handleOptionChange}/>
             People
           </label>
 
@@ -64,17 +66,18 @@ export default function Search({ searching, onSearchPeople, onSearchMovies }: Se
               className="mr-2"
               value="movies"
               checked={searchOption === 'movies'}
-              onChange={handleSearchOptionChange} />
+              onChange={handleOptionChange} />
             Movies
           </label>
         </div>
 
         <input
+          ref={searchRef}
           type="text"
           placeholder={searchOption === 'people' ? "e.g. Chewbacca, Yoda, Boba Fett" : "e.g. A New Hope, The Empire Strikes Back"}
-          className="font-semibold text-sm border border-solid border-pinkish-grey w-full rounded-md px-2 h-10 shadow-inner placeholder-pinkish-grey mb-[20px] outline-0"
+          className="font-semibold text-sm border border-solid border-pinkish-grey w-full rounded-md px-2 h-10 shadow-inner placeholder-pinkish-grey mb-[20px] outline-0 focus:border-dark-grey"
           value={searchTerm}
-          onChange={handleChange} />
+          onChange={handleTermChange} />
 
         <button
           type="submit"

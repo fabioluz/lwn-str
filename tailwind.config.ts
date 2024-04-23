@@ -19,7 +19,8 @@ const config: Config = {
         'emerald': '#089954',
         'dark-grey': '#383838',
         'warm-grey': '#848484BF',
-        'gainsboro': '#dadada'
+        'gainsboro': '#dadada',
+        'azure': '#0094ff'
       }
     },
     fontFamily: {

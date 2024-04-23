@@ -1,5 +1,7 @@
 'use client'
 
+import Link from "next/link";
+
 export interface ResultItem {
   name: string;
   url: string;
@@ -30,9 +32,11 @@ export function Results({items, searching}: ResultProps) {
           : items.map((item, index) => (
               <div key={index} className="flex justify-between font-semibold border-pinkish-grey border-b items-center h-[55px]">
                 <span>{item.name}</span>
-                <button className="bg-green-teal hover:bg-emerald text-white font-semibold text-sm uppercase px-4 py-2 rounded-full">
+                <Link
+                  href={item.url}
+                  className="bg-green-teal hover:bg-emerald text-white font-semibold text-sm uppercase px-4 py-2 rounded-full">
                   See details
-                </button>
+                </Link>
               </div>
       ))}
     </div>
