@@ -7,7 +7,6 @@ import Link from 'next/link';
 export default function Person({ params }: {
   params: { id: number }
 }) {
-
   const [loading, setLoading] = useState(true);
   const [person, setPerson] = useState<People.Model | undefined>();
 

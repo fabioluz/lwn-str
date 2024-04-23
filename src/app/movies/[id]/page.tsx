@@ -8,7 +8,6 @@ import PrimaryLink from '@/components/primary-link';
 export default function Person({ params }: {
   params: { id: number }
 }) {
-
   const [loading, setLoading] = useState(true);
   const [movie, setMovie] = useState<Movies.Model | undefined>();
 

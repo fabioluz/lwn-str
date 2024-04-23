@@ -7,9 +7,7 @@ import * as People from '../features/people/service';
 import * as Movies from '../features/movies/service';
 
 export default function Home() {
-
   const [items, setItems] = useState<ResultItem[]>([]);
-
   const [searching, setSearching] = useState(false);
 
   const searchPeople = async (name: string) => {
