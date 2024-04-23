@@ -16,7 +16,10 @@ const config: Config = {
       colors: {
         'pinkish-grey': '#c4c4c4',
         'green-teal': '#0ab463',
-        'emerald': '#089954'
+        'emerald': '#089954',
+        'dark-grey': '#383838',
+        'warm-grey': '#848484BF',
+        'gainsboro': '#dadada'
       }
     },
     fontFamily: {

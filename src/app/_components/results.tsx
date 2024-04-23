@@ -1,22 +1,30 @@
 'use client'
 
-import * as People from '../../features/people/service'
+export interface ResultItem {
+  name: string;
+  url: string;
+}
 
 export interface ResultProps {
-  items: People.Person[]
-  searching: boolean
+  items: ResultItem[];
+  searching: boolean;
 }
 
 export function Results({items, searching}: ResultProps) {
   return (
-    <div className="flex flex-col p-[30px] bg-white rounded-md border border-solid border-slate-50 shadow min-h-[582px]">
+    <div className="flex flex-col p-[30px] bg-white rounded-md border border-solid border-gainsboro shadow min-h-[582px]">
       <div className="text-lg font-semibold border-b pb-2.5	border-pinkish-grey">
         Results
       </div>
       { searching
-          ? <div className="grow">
-              <div className="grid h-full place-items-center justify-center">
-                <span className="text-sm text-pinkish-grey font-semibold">Searching...</span>
+          ? <div className="grow flex items-center justify-center">
+              <span className="text-sm text-pinkish-grey font-semibold">Searching...</span>
+            </div>
+          : !items.length
+          ? <div className="grow flex items-center justify-center">
+              <div className="text-sm text-pinkish-grey font-semibold text-center	">
+                <p className="break-after-column">There are zero matches.</p>
+                <p className="break-after-column">Use the form to search for People or Movies.</p>
               </div>
             </div>
           : items.map((item, index) => (
@@ -29,5 +37,4 @@ export function Results({items, searching}: ResultProps) {
       ))}
     </div>
   );
-
 }

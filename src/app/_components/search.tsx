@@ -3,29 +3,41 @@
 import { useState } from "react"
 
 export interface SearchProps {
-  onSearchPeople: (name: string) => void
+  searching: boolean;
+  onSearchPeople: (name: string) => void;
+  onSearchMovies: (name: string) => void;
 }
 
-export default function Search({ onSearchPeople }: SearchProps) {
-  const [query, setQuery] = useState('');
+export default function Search({ searching, onSearchPeople, onSearchMovies }: SearchProps) {
+  const [searchTerm, setSearchTerm] = useState('');
   const [searchOption, setSearchOption] = useState('people');
 
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
+    setSearchTerm(e.target.value);
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSearchPeople(query);
+    
+    switch (searchOption) {
+      case 'people':
+        onSearchPeople(searchTerm);
+        break;
+      case 'movies':
+        onSearchMovies(searchTerm);
+        break;
+      default:
+        throw new Error("unsupported search option");
+    }
   }
 
   const handleSearchOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm('');
     setSearchOption(event.target.value);
   };
 
   return (
-    <div className="flex-1 p-[30px] bg-white rounded-md border border-solid border-slate-50 shadow">
+    <div className="flex-1 p-[30px] bg-white rounded-md border border-solid border-gainsboro shadow">
       <form onSubmit={handleSubmit}>
         <label className="block text-sm font-medium mb-[20px]" htmlFor="inputField">
           What are you searching for?
@@ -60,14 +72,15 @@ export default function Search({ onSearchPeople }: SearchProps) {
         <input
           type="text"
           placeholder={searchOption === 'people' ? "e.g. Chewbacca, Yoda, Boba Fett" : "e.g. A New Hope, The Empire Strikes Back"}
-          className="font-semibold text-sm border border-solid w-full rounded-md px-2 h-10 shadow-inner mb-[20px]"
-          value={query}
+          className="font-semibold text-sm border border-solid border-pinkish-grey w-full rounded-md px-2 h-10 shadow-inner placeholder-pinkish-grey mb-[20px] outline-0"
+          value={searchTerm}
           onChange={handleChange} />
 
         <button
           type="submit"
-          className="bg-green-teal hover:bg-emerald text-white font-semibold text-sm uppercase px-4 py-2 rounded-full w-full">
-            Search
+          disabled={searchTerm === ''}
+          className="disabled:bg-pinkish-grey bg-green-teal hover:bg-emerald text-white font-semibold text-sm uppercase px-4 py-2 rounded-full w-full">
+            {searching ? 'Searching...' : 'Search'}
         </button>
       </form>
     </div>
