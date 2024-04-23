@@ -1,7 +1,7 @@
 'use client'
 
-import Search from "./_components/search";
-import { ResultItem, Results } from "./_components/results";
+import Search from "./search";
+import { ResultItem, Results } from "./results";
 import { useState } from "react";
 import * as People from '../features/people/service';
 import * as Movies from '../features/movies/service';

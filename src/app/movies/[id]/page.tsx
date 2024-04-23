@@ -1,8 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import * as Movies from '../../../features/movies/service';
+import * as Movies from '@/features/movies/service';
 import Link from 'next/link';
+import PrimaryLink from '@/components/primary-link';
 
 export default function Person({ params }: {
   params: { id: number }
@@ -44,11 +45,9 @@ export default function Person({ params }: {
           </div>
 
           <div className="flex">
-            <Link
-              href="/"
-              className="bg-green-teal hover:bg-emerald text-white font-semibold text-sm uppercase px-4 py-2 rounded-full">
+            <PrimaryLink href="/">
               Back to search
-            </Link>
+            </PrimaryLink>
           </div>
         </div>
       )}
